@@ -19,17 +19,17 @@ Run the application and setup the server on your local machine:
 Navigate to <localhost:3000>
 
 ## Built With
-..* [Sequelize](http://docs.sequelizejs.com/ "sequelize documentation") - The ORM used.
-..* [MySQL](https://github.com/mysqljs/mysql "MySQL documentation") - The relational database management system used.
-..* [Express.js](https://expressjs.com/ "Express.js Documentation") - The web framework used.
-..* [Pug/Jade](https://www.npmjs.com/package/pug "Pug/Jade Documentation") - The front end framework used.
+* [Sequelize](http://docs.sequelizejs.com/ "sequelize documentation") - The ORM used.
+* [MySQL](https://github.com/mysqljs/mysql "MySQL documentation") - The relational database management system used.
+* [Express.js](https://expressjs.com/ "Express.js Documentation") - The web framework used.
+* [Pug/Jade](https://www.npmjs.com/package/pug "Pug/Jade Documentation") - The front end framework used.
 
 ## Authors
-..* [Eric Hicks](https://github.com/hicks8989 "Eric Hicks") - All frontend and backend code.
-..* [Team Treehouse](https://teamtreehouse.com "Team Treehouse") - Provided html mockups.
+* [Eric Hicks](https://github.com/hicks8989 "Eric Hicks") - All frontend and backend code.
+* [Team Treehouse](https://teamtreehouse.com "Team Treehouse") - Provided html mockups.
 
 ## License
 This project is licensed under the MIT license - see the [LICENSE.md](./LICENSE.md) file for details.
 
 ## Acknowledgments
-..* [Team Treehouse](https://teamtreehouse.com "Team Treehouse") - Project insperation and html mockups.
+* [Team Treehouse](https://teamtreehouse.com "Team Treehouse") - Project insperation and html mockups.
