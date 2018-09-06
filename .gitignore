@@ -3,3 +3,9 @@ node_modules/
 
 # Ignore the config folder.
 config/
+
+# Ignore the procfile.
+procfile
+
+# Ignore the database.
+library.db
