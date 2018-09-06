@@ -9,12 +9,14 @@ In order to use the project, download the project files then run 'npm install' i
 Make sure [node.js](https://nodejs.org/en/ "node.js") and [npm](https://www.npmjs.com/ "npm") are downloaded on your machine before running these commands.
 
 install project dependencies:
+<br />
 `npm install`
 
 ## Running the project
 After installing dependencies run the following code.
-
+<br />
 Run the application and setup the server on your local machine:
+<br />
 `npm run`
 Navigate to <localhost:3000>
 
