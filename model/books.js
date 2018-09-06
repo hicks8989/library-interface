@@ -38,8 +38,11 @@ module.exports = function(sequelize, DataTypes) {
                 }
             }
         },
-        first_published: DataTypes.INTEGER
-    }, {
+        first_published: {
+            type: DataTypes.STRING,
+        }
+    }, 
+    {
         timestamps: false
     });
     // Export the Books model:
