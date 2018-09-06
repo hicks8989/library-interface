@@ -10,6 +10,7 @@ Make sure [node.js](https://nodejs.org/en/ "node.js") and [npm](https://www.npmj
 
 install project dependencies:
 <br />
+<br />
 `npm install`
 
 ## Running the project
@@ -17,7 +18,10 @@ After installing dependencies run the following code.
 <br />
 Run the application and setup the server on your local machine:
 <br />
+<br />
 `npm run`
+<br />
+<br />
 Navigate to <localhost:3000>
 
 ## Built With
