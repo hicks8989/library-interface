@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    title Library Manager
+    link(rel='stylesheet', href='/static/stylesheets/style.css')
+  nav
+    ul
+      li
+        a(href='/books?filter=all') Books
+      li
+        a(href='/patrons') Patrons
+      li
+        a(href='/loans?filter=all') Loans
+  body
+    block content

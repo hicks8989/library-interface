@@ -1,0 +1,30 @@
+extends layout.pug
+
+block content
+	h1 New Loan
+	include sql_error.pug
+	form(method="post", action="/loans/new")
+		p
+			label(for='book_id') Book
+			select#book_id(name="book_id", class="req", value=loan.book_id)
+				each book in books
+					option(value=book.id) #{book.title}
+		p
+			label(for='patron_id') Patron
+			select#patron_id(name="patron_id", class="req", value=loan.patron)
+				each patron in patrons
+					option(value=patron.library_id) #{patron.first_name} #{patron.last_name}
+		p
+			label(for='loaned_on') Loaned on:
+			if !err
+				input#loaned_on(type='text', value=date, name="loaned_on")
+			else
+				input#loaned_on(type='text', value=loan.loaned_on, name="loaned_on")
+		p
+			label(for='return_by') Return by:
+			if !err
+				input#return_by(type='text', value=return_date, name="return_by")
+			else
+				input#return_by(type='text', value=loan.return_by, name="return_by")
+		p
+			input(type='submit', value='Create New Loan')
