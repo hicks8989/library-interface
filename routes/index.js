@@ -4,7 +4,6 @@ const express = require('express');
 const Op = require('sequelize').Op;
 const moment = require('moment');
 const dateFormat = require('dateformat');
-const queryString = require('querystring');
 
 // Create application router:
 // ===========================================
@@ -18,6 +17,14 @@ const Patrons = require('../model').Patrons;
 
 // HELPER FUNCTIONS:
 // ===========================================
+function formatDates( loans ) {
+    return {
+        return_by: dateFormat(loans.return_by, 'mm/dd/yyyy'),
+        loaned_on: dateFormat(loans.loaned_on, 'mm/dd/yyyy'),
+        returned_on: dateFormat(loans.returned_on, 'mm/dd/yyyy')
+    };
+}
+
 function renderLoans( res, req, loans, filter ) {
     Promise.all(loans.map( loan => {
         return Books.findById(loan.book_id, {raw: true}).then( book => { 
@@ -101,9 +108,7 @@ router.get('/books/details/:id', ( req, res ) => {
                         return {
                             ...loan,
                             patron,
-                            loaned_on: dateFormat(loan.loaned_on, 'mm/dd/yyyy'),
-                            return_by: dateFormat(loan.return_by, 'mm/dd/yyyy'),
-                            returned_on: dateFormat(loan.returned_on, 'mm/dd/yyyy')
+                            ...formatDates( loan )
                         }
                     });
                 })).then( loans => {
@@ -149,15 +154,13 @@ router.get('/books/return/:id', ( req, res ) => {
             // Send locals to page.
             res.locals.book = book;
             // Find the corrosponding loan and use that to find the corresponding patron
-            Loans.findAll({ where: {book_id: id, returned_on: null}, raw: true}).then( loan => {
-                console.log(loan);
+            Loans.findOne({ where: {book_id: id, returned_on: null}, raw: true}).then( loan => {
                 res.locals.loan = {
-                    ...loan[0],
-                    loaned_on: dateFormat(loan[0].loaned_on, 'mm/dd/yyyy'),
-                    return_by: dateFormat(loan[0].return_by, 'mm/dd/yyyy')
+                    ...loan,
+                    ...formatDates( loan )
                 };
-                Patrons.findAll({ where: {library_id: loan[0].patron_id}, raw: true}).then( patron => {
-                    res.locals.patron = patron[0];
+                Patrons.findOne({ where: {library_id: loan.patron_id}, raw: true}).then( patron => {
+                    res.locals.patron = patron;
                     const now = new Date();
                     res.locals.returned_on = dateFormat(now, 'mm/dd/yyyy');
                     res.render('book_return'); // Render the book_return.pug file.
@@ -215,9 +218,7 @@ router.get('/patrons/details/:id', ( req, res ) => {
                     return {
                         ...loan,
                         book,
-                        return_by: dateFormat(loan.return_by, 'mm/dd/yyyy'),
-                        returned_on: dateFormat(loan.returned_on, 'mm/dd/yyyy'),
-                        loaned_on: dateFormat(loan.loaned_on, 'mm/dd/yyyy')
+                        ...formatDates( loan )
                     };
                 });
             })).then( loans => {
